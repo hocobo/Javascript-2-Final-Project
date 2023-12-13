@@ -20,7 +20,7 @@ export default {
         background_image: this.item.background_image,
         gameType:'Game',
         favorite: this.item.favorite,
-        user: this.authUser.email,
+
       }
     }
   },
@@ -37,11 +37,16 @@ export default {
   methods: {
     addGameDb() {
 
+
+
       if(this.authUser){
+        this.thisGame.user = this.authUser.email;
         db.collection('games').add(this.thisGame)
             .then(docRef => {
               // this.addImage(docRef.id);
+
               this.gameAdded = true;
+              alert('Game Added')
             })
             .catch(error => {
               console.error('game not added', error);
